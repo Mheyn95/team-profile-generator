@@ -10,5 +10,5 @@ test("creates a Manager object", () => {
 test("run getName function", () => {
   const manager = new Manager("Dave", 5, "test@test.com");
 
-  expect(manager.getId()).toBe(5);
+  expect(manager.getName()).toBe("Dave");
 });
