@@ -36,7 +36,7 @@ Here you can see how you can go to the parent directory using "cd team-profile-g
 ![Image of terminal showing the commands to start the application](./assets/images/startProgram.png)
 
 To watch a video of this application being used follow this link:
-[Team Profile Generator Video](https://drive.google.com/file/d/1IYjIAWcRGPlVC8e0kvhAiKExYZiMz7od/preview)
+[Team Profile Generator Video](https://drive.google.com/file/d/1RuOsHYgjDyp8SU6bGtVLKfYwAUorFUXU/preview)
 
 ## Test
 
