@@ -1,3 +1,5 @@
+let arrayHtml = [];
+
 const generateManager = (manager) => {
   return `
     <section class="my-3" id="portfolio">
@@ -12,26 +14,25 @@ const generateManager = (manager) => {
 };
 
 const generateEmployeeHtml = (employees) => {
-  let arrayHtml = [];
   for (i = 0; i < employees; i++) {
-    let Html = `
+    const html = `
          <div class="col-12 mb-2 bg-dark text-light p-3">
          <h3 class="portfolio-item-title text-light">${employees[i].name}</h3>
          <li>${employees[i].id}</li>
          <li>${employees[i].email}</li>
          <li>${employees[i].officeNumber}</li>
        </div>`;
-    arrayHtml.push(Html);
+    arrayHtml.push(html);
   }
-  return arrayHtml.join("");
+  arrayHtml = arrayHtml.join("");
+  return arrayHtml;
 };
 
 const generateEmployees = (employees) => {
   return `
     <section class="my-3" id="portfolio">
-      <h2 class="text-dark bg-primary p-2 display-inline-block">Work</h2>
       <div class="flex-row justify-space-between">
-          ${generateEmployeeHtml(employees)}`;
+      ${generateEmployeeHtml(employees)}`;
 };
 
 module.exports = (manager, employees) => {

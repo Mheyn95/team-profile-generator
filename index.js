@@ -77,142 +77,6 @@ const promptManager = () => {
     });
 };
 
-const promptIntern = () => {
-  return inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "name",
-        message: "What is the intern's name? (Required)",
-        validate: (name) => {
-          if (name) {
-            return true;
-          } else {
-            console.log("Please enter intern's name!");
-            return false;
-          }
-        },
-      },
-      {
-        type: "input",
-        name: "employeeId",
-        message: "Enter intern's employee ID (Required)",
-        validate: (employeeId) => {
-          if (employeeId) {
-            return true;
-          } else {
-            console.log("Please enter the interns employee ID!");
-            return false;
-          }
-        },
-      },
-      {
-        type: "input",
-        name: "email",
-        message: "Enter intern's email address (Required)",
-        validate: (email) => {
-          if (email) {
-            return true;
-          } else {
-            console.log("Please enter the interns email address!");
-            return false;
-          }
-        },
-      },
-      {
-        type: "input",
-        name: "school",
-        message: "Enter intern's school (Required)",
-        validate: (school) => {
-          if (school) {
-            return true;
-          } else {
-            console.log("Please enter the interns school!");
-            return false;
-          }
-        },
-      },
-    ])
-    .then((data) => {
-      const intern = new Intern(
-        data.name,
-        data.employeeId,
-        data.email,
-        data.school
-      );
-      employees.push(intern);
-      console.log(employees);
-    });
-};
-
-const promptEngineer = () => {
-  return inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "name",
-        message: "What is the engineer's name? (Required)",
-        validate: (name) => {
-          if (name) {
-            return true;
-          } else {
-            console.log("Please enter engineer's name!");
-            return false;
-          }
-        },
-      },
-      {
-        type: "input",
-        name: "employeeId",
-        message: "Enter engineer's employee ID (Required)",
-        validate: (employeeId) => {
-          if (employeeId) {
-            return true;
-          } else {
-            console.log("Please enter the engineers employee ID!");
-            return false;
-          }
-        },
-      },
-      {
-        type: "input",
-        name: "email",
-        message: "Enter engineer's email address (Required)",
-        validate: (email) => {
-          if (email) {
-            return true;
-          } else {
-            console.log("Please enter the engineers email address!");
-            return false;
-          }
-        },
-      },
-      {
-        type: "input",
-        name: "github",
-        message: "Enter engineer's github link (Required)",
-        validate: (github) => {
-          if (github) {
-            return true;
-          } else {
-            console.log("Please enter the engineers github link!");
-            return false;
-          }
-        },
-      },
-    ])
-    .then((data) => {
-      const engineer = new Engineer(
-        data.name,
-        data.employeeId,
-        data.email,
-        data.github
-      );
-      employees.push(engineer);
-      console.log(employees);
-    });
-};
-
 const promptEmployee = () => {
   console.log(`
   ==================
@@ -230,28 +94,152 @@ const promptEmployee = () => {
     ])
     .then((data) => {
       if (data.addEmployee === "Add Intern") {
-        promptIntern().then(promptEmployee);
+        return inquirer
+          .prompt([
+            {
+              type: "input",
+              name: "name",
+              message: "What is the intern's name? (Required)",
+              validate: (name) => {
+                if (name) {
+                  return true;
+                } else {
+                  console.log("Please enter intern's name!");
+                  return false;
+                }
+              },
+            },
+            {
+              type: "input",
+              name: "employeeId",
+              message: "Enter intern's employee ID (Required)",
+              validate: (employeeId) => {
+                if (employeeId) {
+                  return true;
+                } else {
+                  console.log("Please enter the interns employee ID!");
+                  return false;
+                }
+              },
+            },
+            {
+              type: "input",
+              name: "email",
+              message: "Enter intern's email address (Required)",
+              validate: (email) => {
+                if (email) {
+                  return true;
+                } else {
+                  console.log("Please enter the interns email address!");
+                  return false;
+                }
+              },
+            },
+            {
+              type: "input",
+              name: "school",
+              message: "Enter intern's school (Required)",
+              validate: (school) => {
+                if (school) {
+                  return true;
+                } else {
+                  console.log("Please enter the interns school!");
+                  return false;
+                }
+              },
+            },
+          ])
+          .then((data) => {
+            const intern = new Intern(
+              data.name,
+              data.employeeId,
+              data.email,
+              data.school
+            );
+            employees.push(intern);
+            return promptEmployee();
+          });
       } else if (data.addEmployee === "Add Engineer") {
-        promptEngineer().then(promptEmployee);
+        return inquirer
+          .prompt([
+            {
+              type: "input",
+              name: "name",
+              message: "What is the engineer's name? (Required)",
+              validate: (name) => {
+                if (name) {
+                  return true;
+                } else {
+                  console.log("Please enter engineer's name!");
+                  return false;
+                }
+              },
+            },
+            {
+              type: "input",
+              name: "employeeId",
+              message: "Enter engineer's employee ID (Required)",
+              validate: (employeeId) => {
+                if (employeeId) {
+                  return true;
+                } else {
+                  console.log("Please enter the engineers employee ID!");
+                  return false;
+                }
+              },
+            },
+            {
+              type: "input",
+              name: "email",
+              message: "Enter engineer's email address (Required)",
+              validate: (email) => {
+                if (email) {
+                  return true;
+                } else {
+                  console.log("Please enter the engineers email address!");
+                  return false;
+                }
+              },
+            },
+            {
+              type: "input",
+              name: "github",
+              message: "Enter engineer's github link (Required)",
+              validate: (github) => {
+                if (github) {
+                  return true;
+                } else {
+                  console.log("Please enter the engineers github link!");
+                  return false;
+                }
+              },
+            },
+          ])
+          .then((data) => {
+            const engineer = new Engineer(
+              data.name,
+              data.employeeId,
+              data.email,
+              data.github
+            );
+            employees.push(engineer);
+            promptEmployee();
+          });
       } else {
-        return html(manager, employees)
-          .then((pageHTML) => {
-            return writeFile(pageHTML);
-          })
+        const pageHTML = html(manager, employees);
+        return writeFile(pageHTML)
           .then((writeFileResponse) => {
             console.log(writeFileResponse);
             return copyFile();
           })
           .then((copyFileResponse) => {
             console.log(copyFileResponse);
+          })
+          .catch((err) => {
+            console.log(err);
           });
       }
     });
 };
 
-promptManager()
-  .then(promptEmployee)
-
-  .catch((err) => {
-    console.log(err);
-  });
+promptManager().then(promptEmployee);
