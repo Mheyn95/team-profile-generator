@@ -1,7 +1,4 @@
-module.exports = (templateData) => {
-  // destructure page data by section
-  const { projects, about, ...header } = templateData;
-
+module.exports = (manager, employees) => {
   return `
     <!DOCTYPE html>
     <html lang="en">

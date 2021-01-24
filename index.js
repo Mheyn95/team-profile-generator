@@ -1,10 +1,14 @@
-const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+
 const inquirer = require("inquirer");
 
+const { writeFile, copyFile } = require("./utils/generate-site.js");
+const html = require("./utils/html-markup");
+
 const employees = [];
+let manager = {};
 
 const promptManager = () => {
   return inquirer
@@ -63,12 +67,8 @@ const promptManager = () => {
       },
     ])
     .then((data) => {
-      const manager = new Manager(
-        data.name,
-        data.employeeId,
-        data.email,
-        data.phone
-      );
+      manager = new Manager(data.name, data.employeeId, data.email, data.phone);
+      return manager;
     });
 };
 
@@ -224,14 +224,12 @@ const promptEmployee = () => {
       },
     ])
     .then((data) => {
-      console.log(data);
       if (data.addEmployee === "Add Intern") {
-        console.log(data.addEmployee);
         promptIntern().then(promptEmployee);
       } else if (data.addEmployee === "Add Engineer") {
         promptEngineer().then(promptEmployee);
       } else {
-        return;
+        return html(manager, employees);
       }
     });
 };
