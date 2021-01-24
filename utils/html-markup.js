@@ -1,5 +1,3 @@
-let arrayHtml = [];
-
 const generateManager = (manager) => {
   return `
     <section class="my-3" id="portfolio">
@@ -14,7 +12,8 @@ const generateManager = (manager) => {
 };
 
 const generateEmployeeHtml = (employees) => {
-  for (i = 0; i < employees; i++) {
+  let arrayHtml = [];
+  for (let i = 0; i < employees.length; i++) {
     const html = `
          <div class="col-12 mb-2 bg-dark text-light p-3">
          <h3 class="portfolio-item-title text-light">${employees[i].name}</h3>
