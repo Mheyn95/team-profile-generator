@@ -66,13 +66,14 @@ const promptManager = () => {
         },
       },
     ])
-    .then((data) => {
+    .then(function (data) {
       manager = new Manager(
         data.name,
         data.employeeId,
         data.email,
         data.office
       );
+      manager.role = manager.getRole();
       return manager;
     });
 };
@@ -149,13 +150,14 @@ const promptEmployee = () => {
               },
             },
           ])
-          .then((data) => {
+          .then(function (data) {
             const intern = new Intern(
               data.name,
               data.employeeId,
               data.email,
               data.school
             );
+            intern.role = intern.getRole();
             employees.push(intern);
             return promptEmployee();
           });
@@ -215,13 +217,15 @@ const promptEmployee = () => {
               },
             },
           ])
-          .then((data) => {
+          .then(function (data) {
             const engineer = new Engineer(
               data.name,
               data.employeeId,
               data.email,
               data.github
             );
+
+            engineer.role = engineer.getRole();
             employees.push(engineer);
             promptEmployee();
           });

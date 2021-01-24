@@ -5,6 +5,7 @@ const generateManager = (manager) => {
       <div class="flex-row justify-space-between">
           <div class="col-12 mb-2 bg-dark text-light p-3">
             <h3 class="portfolio-item-title text-light">${manager.name}</h3>
+            <h4 class="portfolio-item-title text-light">${manager.role}</h4>
             <li>${manager.id}</li>
             <li>${manager.email}</li>
             <li>${manager.officeNumber}</li>
@@ -17,6 +18,7 @@ const generateEmployeeHtml = (employees) => {
     const html = `
          <div class="col-12 mb-2 bg-dark text-light p-3">
          <h3 class="portfolio-item-title text-light">${employees[i].name}</h3>
+         <h4 class="portfolio-item-title text-light">${employees[i].role}</h4>
          <li>${employees[i].id}</li>
          <li>${employees[i].email}</li>
          <li>${employees[i].officeNumber}</li>
