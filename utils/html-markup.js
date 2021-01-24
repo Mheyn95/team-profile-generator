@@ -6,22 +6,35 @@ const generateManager = (manager) => {
           <div class="col-12 mb-2 bg-dark text-light p-3">
             <h3 class="portfolio-item-title text-light">${manager.name}</h3>
             <h4 class="portfolio-item-title text-light">${manager.role}</h4>
-            <li>${manager.id}</li>
-            <li>${manager.email}</li>
-            <li>${manager.officeNumber}</li>
+            <li> Employee ID: ${manager.id}</li>
+            <li> Email: ${manager.email}</li>
+            <li> Office Number: ${manager.officeNumber}</li>
           </div>`;
 };
 
 const generateEmployeeHtml = (employees) => {
   let arrayHtml = [];
-  for (let i = 0; i < employees.length; i++) {
-    const html = `
+  let engineers = employees.filter((employee) => employee.role === "Engineer");
+  let interns = employees.filter((employee) => employee.role === "Intern");
+  for (let i = 0; i < engineers.length; i++) {
+    let html = `
          <div class="col-12 mb-2 bg-dark text-light p-3">
-         <h3 class="portfolio-item-title text-light">${employees[i].name}</h3>
-         <h4 class="portfolio-item-title text-light">${employees[i].role}</h4>
-         <li>${employees[i].id}</li>
-         <li>${employees[i].email}</li>
-         <li>${employees[i].officeNumber}</li>
+         <h3 class="portfolio-item-title text-light">${engineers[i].name}</h3>
+         <h4 class="portfolio-item-title text-light">${engineers[i].role}</h4>
+         <li> Employee ID: ${engineers[i].id}</li>
+         <li> Email: ${engineers[i].email}</li>
+         <li> GitHub: ${engineers[i].github}</li>
+       </div>`;
+    arrayHtml.push(html);
+  }
+  for (let i = 0; i < interns.length; i++) {
+    let html = `
+         <div class="col-12 mb-2 bg-dark text-light p-3">
+         <h3 class="portfolio-item-title text-light">${interns[i].name}</h3>
+         <h4 class="portfolio-item-title text-light">${interns[i].role}</h4>
+         <li> Employee ID: ${interns[i].id}</li>
+         <li> Email: ${interns[i].email}</li>
+         <li> School: ${interns[i].school}</li>
        </div>`;
     arrayHtml.push(html);
   }
