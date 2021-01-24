@@ -54,20 +54,25 @@ const promptManager = () => {
       },
       {
         type: "input",
-        name: "phone",
-        message: "Enter office phone number (Required)",
-        validate: (phone) => {
-          if (phone) {
+        name: "office",
+        message: "Enter office number (Required)",
+        validate: (office) => {
+          if (office) {
             return true;
           } else {
-            console.log("Please enter the office phone number!");
+            console.log("Please enter the office number!");
             return false;
           }
         },
       },
     ])
     .then((data) => {
-      manager = new Manager(data.name, data.employeeId, data.email, data.phone);
+      manager = new Manager(
+        data.name,
+        data.employeeId,
+        data.email,
+        data.office
+      );
       return manager;
     });
 };
@@ -229,13 +234,24 @@ const promptEmployee = () => {
       } else if (data.addEmployee === "Add Engineer") {
         promptEngineer().then(promptEmployee);
       } else {
-        return html(manager, employees);
+        return html(manager, employees)
+          .then((pageHTML) => {
+            return writeFile(pageHTML);
+          })
+          .then((writeFileResponse) => {
+            console.log(writeFileResponse);
+            return copyFile();
+          })
+          .then((copyFileResponse) => {
+            console.log(copyFileResponse);
+          });
       }
     });
 };
 
 promptManager()
   .then(promptEmployee)
+
   .catch((err) => {
     console.log(err);
   });
